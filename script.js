@@ -906,16 +906,21 @@ function initScrollReveal() {
    DETAIL PAGE
    ══════════════════════════════════════ */
 function openDetail(sectionId) {
-    // Fetch profile-specific data if it exists, otherwise fall back to generic data
-    const data = (PROFILE_DETAILS[currentProfile] && PROFILE_DETAILS[currentProfile][sectionId]) || DETAILS[sectionId];
+    // Get profile-specific data first, otherwise use generic data
+    const data =
+        (PROFILE_DETAILS[currentProfile] &&
+            PROFILE_DETAILS[currentProfile][sectionId]) ||
+        DETAILS[sectionId];
+
     if (!data) return;
 
     detailTitle.textContent = data.title;
     detailSubtitle.textContent = data.subtitle;
     detailHeroGrad.style.background = data.gradient;
-    
+
     // Video background handling
     const detailVideo = document.getElementById('detail-video');
+
     if (data.detailVideo) {
         detailVideo.src = data.detailVideo;
         detailVideo.style.display = 'block';
@@ -925,22 +930,46 @@ function openDetail(sectionId) {
     }
 
     let html = '';
-    data.sections.forEach(section => {
+
+    // Copy sections so we don't modify PROFILE_DETAILS permanently
+    let sections = [...data.sections];
+
+    /*
+     * CONTACT FORM
+     * Automatically add the enquiry form to every Contact Me page.
+     * Any old form inside the data is removed first to prevent duplicates.
+     */
+    if (sectionId === 'contact') {
+        sections = sections.filter(section => section.type !== 'form');
+
+        sections.push({
+            heading: 'Send an Enquiry',
+            type: 'form'
+        });
+    }
+
+    sections.forEach(section => {
         html += '<div class="detail-section">';
+
         if (section.heading) {
             html += `<h3 class="detail-section-title">${section.heading}</h3>`;
         }
 
         switch (section.type) {
+
             case 'tags':
                 html += '<div class="detail-tags">' +
-                    section.items.map(i => `<span class="detail-tag">${i}</span>`).join('') +
+                    section.items
+                        .map(i => `<span class="detail-tag">${i}</span>`)
+                        .join('') +
                     '</div>';
                 break;
 
             case 'list':
                 html += '<ul class="detail-list">' +
-                    section.items.map(i => `<li>${i}</li>`).join('') +
+                    section.items
+                        .map(i => `<li>${i}</li>`)
+                        .join('') +
                     '</ul>';
                 break;
 
@@ -950,7 +979,8 @@ function openDetail(sectionId) {
                         <div class="detail-stat">
                             <div class="detail-stat-val">${i.value}</div>
                             <div class="detail-stat-label">${i.label}</div>
-                        </div>`).join('') +
+                        </div>
+                    `).join('') +
                     '</div>';
                 break;
 
@@ -964,7 +994,8 @@ function openDetail(sectionId) {
                         <div class="detail-tool">
                             <i class="${i.icon}"></i>
                             <span>${i.name}</span>
-                        </div>`).join('') +
+                        </div>
+                    `).join('') +
                     '</div>';
                 break;
 
@@ -975,66 +1006,290 @@ function openDetail(sectionId) {
                             <h3>${i.title}</h3>
                             <p>${i.desc}</p>
                             <div class="sub-card-tags">
-                                ${i.tags.map(t => `<span class="sub-card-tag">${t}</span>`).join('')}
+                                ${i.tags.map(t =>
+                                    `<span class="sub-card-tag">${t}</span>`
+                                ).join('')}
                             </div>
-                        </div>`).join('') +
+                        </div>
+                    `).join('') +
                     '</div>';
                 break;
 
             case 'contact':
                 html += '<div class="contact-grid">' +
                     section.items.map(i => `
-                        <a href="${i.link}" class="contact-card" target="_blank" rel="noopener">
+                        <a href="${i.link}"
+                           class="contact-card"
+                           target="_blank"
+                           rel="noopener">
+
                             <i class="${i.icon}"></i>
+
                             <div>
-                                <span class="contact-card-label">${i.label}</span><br>
-                                <span class="contact-card-value">${i.value}</span>
+                                <span class="contact-card-label">
+                                    ${i.label}
+                                </span><br>
+
+                                <span class="contact-card-value">
+                                    ${i.value}
+                                </span>
                             </div>
-                        </a>`).join('') +
+
+                        </a>
+                    `).join('') +
                     '</div>';
                 break;
 
             case 'form':
                 html += `
-                    <form class="contact-form" id="contact-form">
-                        <input type="text" name="name" placeholder="Your Name" required>
-                        <input type="email" name="email" placeholder="Your Email" required>
-                        <input type="text" name="phone" placeholder="Phone (optional)">
-                        <input type="text" name="subject" placeholder="Subject" required>
-                        <textarea name="message" placeholder="Tell me about your project..." required></textarea>
-                        <button type="submit" id="form-submit-btn">Send Message</button>
-                        <div id="form-message"></div>
-                    </form>`;
+                    <div class="enquiry-form-wrapper">
+
+                        <div class="enquiry-intro">
+                            <p>
+                                Tell me about your project and I'll get back
+                                to you to discuss the next steps.
+                            </p>
+                        </div>
+
+                        <form class="contact-form" id="contact-form">
+
+                            <div class="form-row">
+
+                                <div class="form-field">
+                                    <label for="enquiry-name">
+                                        Name
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="enquiry-name"
+                                        name="name"
+                                        placeholder="Your Name"
+                                        required
+                                    >
+                                </div>
+
+                                <div class="form-field">
+                                    <label for="enquiry-phone">
+                                        Contact Number
+                                    </label>
+
+                                    <input
+                                        type="tel"
+                                        id="enquiry-phone"
+                                        name="phone"
+                                        placeholder="Your Contact Number"
+                                        required
+                                    >
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-row">
+
+                                <div class="form-field">
+                                    <label for="enquiry-email">
+                                        Email Address
+                                    </label>
+
+                                    <input
+                                        type="email"
+                                        id="enquiry-email"
+                                        name="email"
+                                        placeholder="your@email.com"
+                                        required
+                                    >
+                                </div>
+
+                                <div class="form-field">
+                                    <label for="project-genre">
+                                        Project Genre
+                                    </label>
+
+                                    <select
+                                        id="project-genre"
+                                        name="projectGenre"
+                                        required
+                                    >
+                                        <option value="">
+                                            Select Project Genre
+                                        </option>
+
+                                        <option value="Social Media Management">
+                                            Social Media Management
+                                        </option>
+
+                                        <option value="Content Creation">
+                                            Content Creation
+                                        </option>
+
+                                        <option value="Video Editing">
+                                            Video Editing
+                                        </option>
+
+                                        <option value="Videography">
+                                            Videography
+                                        </option>
+
+                                        <option value="Graphic Design">
+                                            Graphic Design
+                                        </option>
+
+                                        <option value="Branding">
+                                            Branding
+                                        </option>
+
+                                        <option value="Digital Marketing">
+                                            Digital Marketing
+                                        </option>
+
+                                        <option value="Event Management">
+                                            Event Management
+                                        </option>
+
+                                        <option value="Other">
+                                            Other
+                                        </option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-row">
+
+                                <div class="form-field">
+                                    <label for="preferred-date">
+                                        Preferred Date
+                                    </label>
+
+                                    <input
+                                        type="date"
+                                        id="preferred-date"
+                                        name="preferredDate"
+                                        required
+                                    >
+                                </div>
+
+                                <div class="form-field">
+                                    <label for="preferred-time">
+                                        Preferred Time
+                                    </label>
+
+                                    <input
+                                        type="time"
+                                        id="preferred-time"
+                                        name="preferredTime"
+                                        required
+                                    >
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-field">
+                                <label for="project-description">
+                                    Project Description
+                                </label>
+
+                                <textarea
+                                    id="project-description"
+                                    name="description"
+                                    rows="5"
+                                    placeholder="Describe your project, goals, requirements, budget, timeline, etc."
+                                    required
+                                ></textarea>
+                            </div>
+
+
+                            <div class="form-field">
+                                <label for="project-message">
+                                    Message
+                                </label>
+
+                                <textarea
+                                    id="project-message"
+                                    name="message"
+                                    rows="4"
+                                    placeholder="Anything else you'd like me to know?"
+                                    required
+                                ></textarea>
+                            </div>
+
+
+                            <button
+                                type="submit"
+                                id="form-submit-btn"
+                                class="enquiry-submit"
+                            >
+                                <i class="fas fa-paper-plane"></i>
+                                Send Enquiry
+                            </button>
+
+
+                            <div id="form-message"></div>
+
+                        </form>
+
+                    </div>
+                `;
                 break;
         }
+
         html += '</div>';
     });
 
     detailBody.innerHTML = html;
 
-    // Attach form handler if contact page
+    // Attach enquiry form handler
     const form = document.getElementById('contact-form');
+
     if (form) {
         form.addEventListener('submit', handleContactSubmit);
     }
 
-    // Show
+    // Show detail overlay
     detailOverlay.classList.remove('hidden');
-    requestAnimationFrame(() => detailOverlay.classList.add('visible'));
+
+    requestAnimationFrame(() => {
+        detailOverlay.classList.add('visible');
+    });
+
     detailOverlay.scrollTop = 0;
     document.body.style.overflow = 'hidden';
 }
-
 function closeDetail() {
     detailOverlay.classList.remove('visible');
-    setTimeout(() => detailOverlay.classList.add('hidden'), 500);
-    document.body.style.overflow = 'auto';
-}
 
+    setTimeout(() => {
+        detailOverlay.classList.add('hidden');
+
+        // Show Browse screen again
+        screenBrowse.classList.add('active');
+
+        // Restore scrolling
+        document.body.style.overflow = 'auto';
+
+        // Reset detail page scroll
+        detailOverlay.scrollTop = 0;
+    }, 500);
+}
 function initDetail() {
-    detailBack.addEventListener('click', closeDetail);
+
+    if (detailBack) {
+        detailBack.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            closeDetail();
+        });
+    }
+
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeDetail();
+        if (e.key === 'Escape') {
+            closeDetail();
+        }
     });
 }
 
@@ -1042,48 +1297,106 @@ function initDetail() {
 /* ══════════════════════════════════════
    CONTACT FORM — MongoDB + Email
    ══════════════════════════════════════ */
+/* ══════════════════════════════════════
+   CONTACT ENQUIRY FORM
+   ══════════════════════════════════════ */
+
 async function handleContactSubmit(e) {
     e.preventDefault();
+
     const form = e.target;
-    const btn = $('form-submit-btn');
-    const msgDiv = $('form-message');
+    const btn = document.getElementById('form-submit-btn');
+    const msgDiv = document.getElementById('form-message');
 
     const data = {
         name: form.name.value.trim(),
-        email: form.email.value.trim(),
         phone: form.phone.value.trim(),
-        subject: form.subject.value.trim(),
+        email: form.email.value.trim(),
+        projectGenre: form.projectGenre.value,
+        preferredDate: form.preferredDate.value,
+        preferredTime: form.preferredTime.value,
+        description: form.description.value.trim(),
         message: form.message.value.trim()
     };
 
+    // Basic validation
+    if (
+        !data.name ||
+        !data.phone ||
+        !data.email ||
+        !data.projectGenre ||
+        !data.preferredDate ||
+        !data.preferredTime ||
+        !data.description ||
+        !data.message
+    ) {
+        msgDiv.innerHTML = `
+            <div class="form-message error">
+                Please fill in all required fields.
+            </div>
+        `;
+        return;
+    }
+
     btn.disabled = true;
-    btn.textContent = 'Sending...';
+    btn.innerHTML = `
+        <i class="fas fa-spinner fa-spin"></i>
+        Sending...
+    `;
+
     msgDiv.innerHTML = '';
 
     try {
+
         const res = await fetch(CONFIG.contactAPI, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+
+            headers: {
+                'Content-Type': 'application/json'
+            },
+
             body: JSON.stringify(data)
         });
 
         const result = await res.json();
 
         if (res.ok && result.success) {
-            msgDiv.innerHTML = '<div class="form-message success">Message sent! I\'ll get back to you soon.</div>';
+
+            msgDiv.innerHTML = `
+                <div class="form-message success">
+                    <i class="fas fa-check-circle"></i>
+                    Enquiry sent successfully! I'll get back to you soon.
+                </div>
+            `;
+
             form.reset();
+
         } else {
-            throw new Error(result.error || 'Something went wrong');
+
+            throw new Error(
+                result.error || 'Something went wrong'
+            );
         }
+
     } catch (err) {
-        msgDiv.innerHTML = `<div class="form-message error">Could not send message. Please email me directly or try again later.</div>`;
+
+        console.error('Contact form error:', err);
+
+        msgDiv.innerHTML = `
+            <div class="form-message error">
+                <i class="fas fa-exclamation-circle"></i>
+                Could not send enquiry. Please try again later.
+            </div>
+        `;
     }
 
     btn.disabled = false;
-    btn.textContent = 'Send Message';
+
+    btn.innerHTML = `
+        <i class="fas fa-paper-plane"></i>
+        Send Enquiry
+    `;
 }
-
-
 /* ══════════════════════════════════════
    INITIALIZE
    ══════════════════════════════════════ */

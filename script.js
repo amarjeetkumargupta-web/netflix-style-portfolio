@@ -7,7 +7,7 @@
    ══════════════════════════════════════ */
 const CONFIG = {
     // Intro duration (ms) before fade to black
-    introDuration: 8230,
+    introDuration: 3500,
 
     // File paths — place your files at these locations
     introVideo: 'assets/intro.mp4',           // Optional intro video
@@ -25,7 +25,17 @@ const CONFIG = {
     },
 
     // Contact API endpoint (when running with server.js)
-    contactAPI: '/api/contact'
+    contactAPI: '/api/contact',
+
+    // Resume images per profile — place your resume images at these locations
+    // Replace the files to update each profile's resume
+    resumeImages: {
+        media:      'assets/resumes/media-resume.jpg',
+        editor:     'assets/resumes/editor-resume.jpg',
+        designer:   'assets/resumes/designer-resume.jpg',
+        strategist: 'assets/resumes/strategist-resume.jpg',
+        anchor:     'assets/resumes/anchor-resume.jpg'
+    }
 };
 
 
@@ -43,6 +53,8 @@ const CARDS = {
     'certifications':   { title: 'Certifications',       sub: 'Training & Accolades',            image: 'assets/cards/certifications.jpg', fallback: 'linear-gradient(135deg, #27ae60 0%, #2ecc71 100%)', icon: 'fas fa-certificate' },
     'recommendations':  { title: 'Recommendations',      sub: 'Testimonials',                    image: 'assets/cards/recommendations.jpg', fallback: 'linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%)', icon: 'fas fa-star' },
     'projects':         { title: 'Projects',             sub: 'Case Studies',                    image: 'assets/cards/projects.jpg', fallback: 'linear-gradient(135deg, #e67e22 0%, #d35400 100%)', icon: 'fas fa-folder-open' },
+    'articles':         { title: 'Articles',             sub: 'Writing & Insights',              image: 'assets/cards/articles.jpg', fallback: 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)', icon: 'fas fa-newspaper' },
+    'case-studies':     { title: 'Case Studies',         sub: 'Strategy & Results',              image: 'assets/cards/case-studies.jpg', fallback: 'linear-gradient(135deg, #6C5CE7 0%, #2D1B69 100%)', icon: 'fas fa-chart-bar' },
     'contact':          { title: 'Contact Me',           sub: 'Let\'s Connect',                  image: 'assets/cards/contact.jpg', fallback: 'linear-gradient(135deg, #E50914 0%, #6b0610 100%)', icon: 'fas fa-envelope' },
 
     // Row 2 (Continue Watching / Personal Brand)
@@ -80,11 +92,17 @@ const defaultRows = [
     { title: 'Get In Touch', cardIds: ['contact'] }
 ];
 
+const strategistRows = [
+    { title: 'Core Information', cardIds: ['work-permit', 'skills-tools', 'experience'] },
+    { title: 'Background & Work', cardIds: ['articles', 'case-studies', 'projects'] },
+    { title: 'Get In Touch', cardIds: ['contact'] }
+];
+
 const PROFILE_ROWS = {
     media: defaultRows,
     editor: defaultRows,
     designer: defaultRows,
-    strategist: defaultRows,
+    strategist: strategistRows,
     anchor: defaultRows
 };
 
@@ -161,8 +179,9 @@ const PROFILE_DETAILS = {
             sections: [
                 { heading: '', type: 'text', content: 'Have a brand that needs a voice? Let’s build your social presence.' },
                 { heading: 'Get in Touch', type: 'contact', items: [
-                    { icon: 'fas fa-envelope', label: 'Email', value: 'hello@avikamalik.com', link: 'mailto:hello@avikamalik.com' },
+                    { icon: 'fas fa-envelope', label: 'Gmail', value: 'hello@avikamalik.com', link: 'mailto:hello@avikamalik.com' },
                     { icon: 'fab fa-linkedin-in', label: 'LinkedIn', value: 'Avika Malik', link: '#' },
+                    { icon: 'fab fa-youtube', label: 'YouTube', value: 'Avika Malik', link: '#' },
                     { icon: 'fab fa-instagram', label: 'Instagram', value: '@avikamalik', link: '#' }
                 ]}
             ]
@@ -205,7 +224,9 @@ const PROFILE_DETAILS = {
             sections: [
                 { heading: '', type: 'text', content: 'Got raw footage or a visual concept? Let’s make it cinematic.' },
                 { heading: 'Get in Touch', type: 'contact', items: [
-                    { icon: 'fas fa-envelope', label: 'Email', value: 'hello@avikamalik.com', link: 'mailto:hello@avikamalik.com' },
+                    { icon: 'fas fa-envelope', label: 'Gmail', value: 'hello@avikamalik.com', link: 'mailto:hello@avikamalik.com' },
+                    { icon: 'fab fa-linkedin-in', label: 'LinkedIn', value: 'Avika Malik', link: '#' },
+                    { icon: 'fab fa-youtube', label: 'YouTube', value: 'Avika Malik', link: '#' },
                     { icon: 'fab fa-instagram', label: 'Instagram', value: '@avikamalik', link: '#' }
                 ]}
             ]
@@ -248,8 +269,9 @@ const PROFILE_DETAILS = {
             sections: [
                 { heading: '', type: 'text', content: 'Need premium, editorial-style visuals? Let’s design them.' },
                 { heading: 'Get in Touch', type: 'contact', items: [
-                    { icon: 'fas fa-envelope', label: 'Email', value: 'hello@avikamalik.com', link: 'mailto:hello@avikamalik.com' },
-                    { icon: 'fab fa-linkedin-in', label: 'LinkedIn', value: 'Avika Malik', link: '#' }
+                    { icon: 'fas fa-envelope', label: 'Gmail', value: 'hello@avikamalik.com', link: 'mailto:hello@avikamalik.com' },
+                    { icon: 'fab fa-linkedin-in', label: 'LinkedIn', value: 'Avika Malik', link: '#' },
+                    { icon: 'fab fa-youtube', label: 'YouTube', value: 'Avika Malik', link: '#' }
                 ]}
             ]
         }
@@ -268,22 +290,22 @@ const PROFILE_DETAILS = {
         'experience': {
             title: 'Experience', subtitle: 'Brand & Campaigns',
             gradient: 'linear-gradient(135deg, #0984E3 0%, #02243B 100%)',
-            sections: [{ heading: 'What I Do', type: 'text', content: '3+ years turning vague ideas into actionable marketing roadmaps. I build content strategies that don’t just blindly follow trends—they establish brand authority.' }]
+            sections: [{ heading: 'What I Do', type: 'text', content: '3+ years turning vague ideas into actionable marketing roadmaps. I build content strategies that don\'t just blindly follow trends—they establish brand authority.' }]
         },
-        'certifications': {
-            title: 'Certifications', subtitle: 'Training & Accolades',
-            gradient: 'linear-gradient(135deg, #27ae60 0%, #1e8449 100%)',
-            sections: [{ heading: 'Credentials', type: 'text', content: 'Strategic thinking validated by 3+ years of real-world campaign execution, marketing management, and event promotion.' }]
+        'articles': {
+            title: 'Articles', subtitle: 'Writing & Insights',
+            gradient: 'linear-gradient(135deg, #11998e 0%, #0b534d 100%)',
+            sections: [{ heading: 'Articles', type: 'dynamic-list', dataSource: 'data/articles.json' }]
         },
-        'recommendations': {
-            title: 'Recommendations', subtitle: 'Testimonials',
-            gradient: 'linear-gradient(135deg, #8e44ad 0%, #5b2c6f 100%)',
-            sections: [{ heading: 'Feedback', type: 'text', content: 'Trusted by founders and project managers for delivering business-minded creative solutions that actually convert.' }]
+        'case-studies': {
+            title: 'Case Studies', subtitle: 'Strategy & Results',
+            gradient: 'linear-gradient(135deg, #6C5CE7 0%, #2D1B69 100%)',
+            sections: [{ heading: 'Case Studies', type: 'dynamic-list', dataSource: 'data/case-studies.json' }]
         },
         'projects': {
-            title: 'Projects', subtitle: 'Case Studies',
+            title: 'Projects', subtitle: 'Real Work & Execution',
             gradient: 'linear-gradient(135deg, #e67e22 0%, #a04000 100%)',
-            sections: [{ heading: 'Key Projects', type: 'text', content: 'Executed comprehensive Social Media Audits, Event Marketing Strategies, and tailored Content Calendars for niche brands.' }]
+            sections: [{ heading: 'Projects', type: 'dynamic-list', dataSource: 'data/projects.json' }]
         },
         'contact': {
             title: 'Contact Me', subtitle: 'Let\'s Connect',
@@ -291,8 +313,9 @@ const PROFILE_DETAILS = {
             sections: [
                 { heading: '', type: 'text', content: 'Have an idea but no roadmap? Let’s build the strategy.' },
                 { heading: 'Get in Touch', type: 'contact', items: [
-                    { icon: 'fas fa-envelope', label: 'Email', value: 'hello@avikamalik.com', link: 'mailto:hello@avikamalik.com' },
-                    { icon: 'fab fa-linkedin-in', label: 'LinkedIn', value: 'Avika Malik', link: '#' }
+                    { icon: 'fas fa-envelope', label: 'Gmail', value: 'hello@avikamalik.com', link: 'mailto:hello@avikamalik.com' },
+                    { icon: 'fab fa-linkedin-in', label: 'LinkedIn', value: 'Avika Malik', link: '#' },
+                    { icon: 'fab fa-youtube', label: 'YouTube', value: 'Avika Malik', link: '#' }
                 ]}
             ]
         }
@@ -334,7 +357,9 @@ const PROFILE_DETAILS = {
             sections: [
                 { heading: '', type: 'text', content: 'Need a voice that holds the room or a manager who handles the chaos? Let’s talk.' },
                 { heading: 'Get in Touch', type: 'contact', items: [
-                    { icon: 'fas fa-envelope', label: 'Email', value: 'hello@avikamalik.com', link: 'mailto:hello@avikamalik.com' },
+                    { icon: 'fas fa-envelope', label: 'Gmail', value: 'hello@avikamalik.com', link: 'mailto:hello@avikamalik.com' },
+                    { icon: 'fab fa-linkedin-in', label: 'LinkedIn', value: 'Avika Malik', link: '#' },
+                    { icon: 'fab fa-youtube', label: 'YouTube', value: 'Avika Malik', link: '#' },
                     { icon: 'fab fa-instagram', label: 'Instagram', value: '@avikamalik', link: '#' }
                 ]}
             ]
@@ -583,8 +608,9 @@ const DETAILS = {
         sections: [
             { heading: '', type: 'text', content: 'Whether you need a social media strategy, creative direction, content execution, or end-to-end brand management — let\'s make it happen.' },
             { heading: 'Get in Touch', type: 'contact', items: [
-                { icon: 'fas fa-envelope', label: 'Email', value: 'hello@avikamalik.com', link: 'mailto:hello@avikamalik.com' },
+                { icon: 'fas fa-envelope', label: 'Gmail', value: 'hello@avikamalik.com', link: 'mailto:hello@avikamalik.com' },
                 { icon: 'fab fa-linkedin-in', label: 'LinkedIn', value: 'Avika Malik', link: '#' },
+                { icon: 'fab fa-youtube', label: 'YouTube', value: 'Avika Malik', link: '#' },
                 { icon: 'fab fa-instagram', label: 'Instagram', value: '@avikamalik', link: '#' },
                 { icon: 'fab fa-whatsapp', label: 'WhatsApp', value: 'Message Me', link: '#' }
             ]},
@@ -671,37 +697,59 @@ function switchScreen(from, to) {
    INTRO — Zoom + Fade to Black
    ══════════════════════════════════════ */
 function initIntro() {
-    // Try to play background music immediately
-    if (introAudio) {
-        introAudio.volume = 0.6;
-        introAudio.play().catch(() => {
-            console.log("Autoplay blocked by browser. Continuing without audio.");
-        });
-    }
+    const startBtn = document.getElementById('start-btn');
+    const startOverlay = document.getElementById('start-overlay');
+    const introVideo = document.getElementById('intro-video');
 
-    // After zoom animation, fade to black then switch screen
-    setTimeout(() => {
-        introOverlay.classList.add('fade-black');
-        introName.style.opacity = '0';
-        introName.style.transition = 'opacity 0.8s ease';
-    }, CONFIG.introDuration);
+    // Wait for user to click Enter
+    startBtn.addEventListener('click', () => {
+        // Hide start overlay
+        startOverlay.classList.add('hidden');
+        
+        // Add playing class to trigger CSS animations
+        screenIntro.classList.add('playing');
 
-    setTimeout(() => {
-        switchScreen(screenIntro, screenProfiles);
-        // Fade out audio if playing
-        if (introAudio && !introAudio.paused) {
-            let vol = introAudio.volume;
-            const fadeAudio = setInterval(() => {
-                vol -= 0.05;
-                if (vol <= 0) {
-                    introAudio.pause();
-                    clearInterval(fadeAudio);
-                } else {
-                    introAudio.volume = vol;
-                }
-            }, 50);
+        // Play intro video
+        if (introVideo) {
+            introVideo.play().catch(() => {
+                console.log("Intro video could not play.");
+            });
         }
-    }, CONFIG.introDuration + 1000);
+
+        // Play intro audio
+        if (introAudio) {
+            introAudio.volume = 0.6;
+            introAudio.currentTime = 0;
+            introAudio.play().catch(() => {
+                console.log("Audio play failed even after interaction.");
+            });
+        }
+
+        // After zoom animation (CONFIG.introDuration), fade to black
+        setTimeout(() => {
+            introOverlay.classList.add('fade-black');
+            introName.style.opacity = '0';
+            introName.style.transition = 'opacity 0.8s ease';
+        }, CONFIG.introDuration);
+
+        // Switch screen and fade out audio
+        setTimeout(() => {
+            switchScreen(screenIntro, screenProfiles);
+            
+            if (introAudio && !introAudio.paused) {
+                let vol = introAudio.volume;
+                const fadeAudio = setInterval(() => {
+                    vol -= 0.05;
+                    if (vol <= 0) {
+                        introAudio.pause();
+                        clearInterval(fadeAudio);
+                    } else {
+                        introAudio.volume = vol;
+                    }
+                }, 50);
+            }
+        }, CONFIG.introDuration + 1000);
+    });
 }
 
 
@@ -861,7 +909,7 @@ function renderRows() {
             cardEl.style.animationDelay = `${ci * 0.08}s`;
 
             cardEl.innerHTML = `
-                <div class="card-bg" style="background: ${cardData.fallback}; background-image: url('${cardData.image}')"></div>
+                <div class="card-bg" style="background-image: url('${cardData.image}'), ${cardData.fallback}; background-size: cover; background-position: center;"></div>
                 <div class="card-overlay"></div>
                 <i class="${cardData.icon} card-icon"></i>
                 <div class="card-text">
@@ -905,7 +953,7 @@ function initScrollReveal() {
 /* ══════════════════════════════════════
    DETAIL PAGE
    ══════════════════════════════════════ */
-function openDetail(sectionId) {
+async function openDetail(sectionId) {
     // Get profile-specific data first, otherwise use generic data
     const data =
         (PROFILE_DETAILS[currentProfile] &&
@@ -947,6 +995,61 @@ function openDetail(sectionId) {
             type: 'form'
         });
     }
+
+    // Check if any section needs dynamic data loading
+    const dynamicSections = sections.filter(s => s.type === 'dynamic-list');
+    if (dynamicSections.length > 0) {
+        await loadDynamicSections(dynamicSections, sections, data, sectionId);
+        return;
+    }
+
+    renderDetailSections(sections, sectionId);
+}
+
+/* Load dynamic data from JSON files in the data/ folder */
+async function loadDynamicSections(dynamicSections, sections, data, sectionId) {
+    for (const dynSection of dynamicSections) {
+        try {
+            const response = await fetch(dynSection.dataSource);
+            if (response.ok) {
+                const jsonData = await response.json();
+                // Replace the dynamic-list section with subcards from JSON
+                const idx = sections.indexOf(dynSection);
+                sections[idx] = {
+                    heading: dynSection.heading,
+                    type: 'subcards',
+                    items: jsonData.items.map(item => ({
+                        title: item.title,
+                        desc: item.description || item.desc || '',
+                        tags: item.tags || [],
+                        link: item.link || ''
+                    }))
+                };
+            } else {
+                // Fallback: show a message if JSON not found
+                const idx = sections.indexOf(dynSection);
+                sections[idx] = {
+                    heading: dynSection.heading,
+                    type: 'text',
+                    content: 'No data added yet. Add items to the JSON file in the data/ folder.'
+                };
+            }
+        } catch (err) {
+            console.log('Could not load dynamic data:', err);
+            const idx = sections.indexOf(dynSection);
+            sections[idx] = {
+                heading: dynSection.heading,
+                type: 'text',
+                content: 'No data added yet. Add items to the JSON file in the data/ folder.'
+            };
+        }
+    }
+    renderDetailSections(sections, sectionId);
+}
+
+/* Render detail page sections into HTML */
+function renderDetailSections(sections, sectionId) {
+    let html = '';
 
     sections.forEach(section => {
         html += '<div class="detail-section">';
@@ -1250,6 +1353,10 @@ function openDetail(sectionId) {
     }
 
     // Show detail overlay
+    showDetailOverlay();
+}
+
+function showDetailOverlay() {
     detailOverlay.classList.remove('hidden');
 
     requestAnimationFrame(() => {
@@ -1398,6 +1505,101 @@ async function handleContactSubmit(e) {
     `;
 }
 /* ══════════════════════════════════════
+   RESUME MODAL
+   ══════════════════════════════════════ */
+function openResumeModal() {
+    const resumePath = CONFIG.resumeImages[currentProfile];
+    if (!resumePath) {
+        alert('No resume available for this profile yet.');
+        return;
+    }
+
+    const modal = document.getElementById('resume-modal');
+    const img = document.getElementById('resume-modal-img');
+    const downloadLink = document.getElementById('resume-download-link');
+    const profileLabel = document.getElementById('resume-profile-label');
+
+    // Set image source with error handling
+    const placeholder = document.getElementById('resume-placeholder');
+    img.style.display = 'block';
+    placeholder.style.display = 'none';
+
+    img.onerror = () => {
+        img.style.display = 'none';
+        placeholder.style.display = 'flex';
+    };
+    img.onload = () => {
+        img.style.display = 'block';
+        placeholder.style.display = 'none';
+    };
+
+    img.src = resumePath;
+    img.alt = `${currentProfile} Resume`;
+
+    // Set download link
+    downloadLink.href = resumePath;
+    downloadLink.download = `${currentProfile}-resume`;
+
+    // Set profile label
+    const profileName = currentProfile.charAt(0).toUpperCase() + currentProfile.slice(1);
+    profileLabel.textContent = `${profileName} — Resume`;
+
+    // Show modal
+    modal.classList.remove('hidden');
+    requestAnimationFrame(() => {
+        modal.classList.add('visible');
+    });
+    document.body.style.overflow = 'hidden';
+}
+
+function closeResumeModal() {
+    const modal = document.getElementById('resume-modal');
+    modal.classList.remove('visible');
+    setTimeout(() => {
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }, 400);
+}
+
+function initResumeModal() {
+    // Resume button in hero
+    const btnResume = document.getElementById('btn-resume');
+    if (btnResume) {
+        btnResume.addEventListener('click', (e) => {
+            e.preventDefault();
+            openResumeModal();
+        });
+    }
+
+    // Close button
+    const closeBtn = document.getElementById('resume-modal-close');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeResumeModal();
+        });
+    }
+
+    // Close on backdrop click
+    const modal = document.getElementById('resume-modal');
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal || e.target.classList.contains('resume-modal-backdrop')) {
+                closeResumeModal();
+            }
+        });
+    }
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+            closeResumeModal();
+        }
+    });
+}
+
+
+/* ══════════════════════════════════════
    INITIALIZE
    ══════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', () => {
@@ -1406,4 +1608,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initProfiles();
     initNavbar();
     initDetail();
+    initResumeModal();
 });

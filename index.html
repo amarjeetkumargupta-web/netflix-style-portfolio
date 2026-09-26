@@ -15,6 +15,11 @@
 </head>
 <body>
 
+    <!-- ===================== START OVERLAY ===================== -->
+    <div id="start-overlay" class="start-overlay">
+        <button id="start-btn" class="start-btn">ENTER PORTFOLIO</button>
+    </div>
+
     <!-- ===================== SCREEN 1: INTRO ===================== -->
     <section id="screen-intro" class="screen active">
         <!-- Background music for intro — place your file at: assets/intro-music.mp3 -->
@@ -173,6 +178,31 @@
         </div>
         <div class="detail-body" id="detail-body">
             <!-- Injected by JS -->
+        </div>
+    </div>
+
+    <!-- ===================== RESUME MODAL ===================== -->
+    <div id="resume-modal" class="resume-modal hidden">
+        <div class="resume-modal-backdrop"></div>
+        <div class="resume-modal-container">
+            <div class="resume-modal-header">
+                <h2 id="resume-profile-label" class="resume-modal-title">Resume</h2>
+                <div class="resume-modal-actions">
+                    <a href="#" id="resume-download-link" class="resume-download-btn" download>
+                        <i class="fas fa-download"></i> Download
+                    </a>
+                    <button id="resume-modal-close" class="resume-close-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="resume-modal-body">
+                <img id="resume-modal-img" src="" alt="Resume" class="resume-img">
+                <div class="resume-placeholder" id="resume-placeholder">
+                    <i class="fas fa-file-alt"></i>
+                    <p>Resume image not uploaded yet.<br>Place your resume image at: <code>assets/resumes/[profile]-resume.jpg</code></p>
+                </div>
+            </div>
         </div>
     </div>
 

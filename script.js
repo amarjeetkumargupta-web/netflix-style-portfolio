@@ -7,7 +7,7 @@
    ══════════════════════════════════════ */
 const CONFIG = {
     // Intro duration (ms) before fade to black
-    introDuration: 3500,
+    introDuration: 2000,
 
     // File paths — place your files at these locations
     introVideo: 'assets/intro.mp4',           // Optional intro video
@@ -681,57 +681,82 @@ function switchScreen(from, to) {
    ══════════════════════════════════════ */
 function initIntro() {
     const startOverlay = document.getElementById('start-overlay');
+    const startBtn = document.getElementById('start-btn');
     const introVideo = document.getElementById('intro-video');
 
-    // Hide start overlay immediately (no click needed)
-    if (startOverlay) {
-        startOverlay.classList.add('hidden');
-    }
+    if (startBtn && startOverlay) {
+        startBtn.addEventListener('click', () => {
+            // Hide start overlay
+            startOverlay.style.opacity = '0';
+            setTimeout(() => {
+                startOverlay.style.display = 'none';
+            }, 300);
 
-    // Auto-play: trigger intro immediately on page load
-    screenIntro.classList.add('playing');
+            // Auto-play: trigger intro immediately after click
+            screenIntro.classList.add('playing');
 
-    // Play intro video (muted autoplay works in all browsers)
-    if (introVideo) {
-        introVideo.muted = true;
-        introVideo.play().catch(() => {
-            console.log("Intro video could not auto-play.");
-        });
-    }
+            // Play intro video (muted autoplay works in all browsers)
+            if (introVideo) {
+                introVideo.muted = true;
+                introVideo.play().catch(() => {
+                    console.log("Intro video could not auto-play.");
+                });
+            }
 
-    // Play intro audio
-    if (introAudio) {
-        introAudio.volume = 0.6;
-        introAudio.currentTime = 0;
-        introAudio.play().catch(() => {
-            console.log("Audio auto-play blocked by browser. This is normal — browsers require user interaction for audio.");
-        });
-    }
+            // Play intro audio
+            if (introAudio) {
+                introAudio.volume = 0.6;
+                introAudio.currentTime = 0;
+                introAudio.play().catch(() => {
+                    console.log("Audio auto-play blocked by browser. This is normal — browsers require user interaction for audio.");
+                });
+            }
 
-    // After zoom animation (CONFIG.introDuration), fade to black
-    setTimeout(() => {
-        introOverlay.classList.add('fade-black');
-        introName.style.opacity = '0';
-        introName.style.transition = 'opacity 0.8s ease';
-    }, CONFIG.introDuration);
+            // After zoom animation (CONFIG.introDuration), fade to black
+            setTimeout(() => {
+                introOverlay.classList.add('fade-black');
+                introName.style.opacity = '0';
+                introName.style.transition = 'opacity 0.8s ease';
+            }, CONFIG.introDuration);
 
-    // Switch screen and fade out audio
-    setTimeout(() => {
-        switchScreen(screenIntro, screenProfiles);
-        
-        if (introAudio && !introAudio.paused) {
-            let vol = introAudio.volume;
-            const fadeAudio = setInterval(() => {
-                vol -= 0.05;
-                if (vol <= 0) {
-                    introAudio.pause();
-                    clearInterval(fadeAudio);
-                } else {
-                    introAudio.volume = vol;
+            // Switch screen and fade out audio
+            setTimeout(() => {
+                switchScreen(screenIntro, screenProfiles);
+                
+                if (introAudio && !introAudio.paused) {
+                    let vol = introAudio.volume;
+                    const fadeAudio = setInterval(() => {
+                        vol -= 0.05;
+                        if (vol <= 0) {
+                            introAudio.pause();
+                            clearInterval(fadeAudio);
+                        } else {
+                            introAudio.volume = vol;
+                        }
+                    }, 50);
                 }
-            }, 50);
+            }, CONFIG.introDuration + 1000);
+        });
+    } else {
+        // Fallback if no start overlay
+        screenIntro.classList.add('playing');
+        if (introVideo) {
+            introVideo.muted = true;
+            introVideo.play().catch(() => {});
         }
-    }, CONFIG.introDuration + 1000);
+        if (introAudio) {
+            introAudio.volume = 0.6;
+            introAudio.play().catch(() => {});
+        }
+        setTimeout(() => {
+            introOverlay.classList.add('fade-black');
+            introName.style.opacity = '0';
+            introName.style.transition = 'opacity 0.8s ease';
+        }, CONFIG.introDuration);
+        setTimeout(() => {
+            switchScreen(screenIntro, screenProfiles);
+        }, CONFIG.introDuration + 1000);
+    }
 }
 
 

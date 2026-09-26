@@ -35,6 +35,19 @@ const CONFIG = {
         designer:   'assets/resumes/designer-resume.jpg',
         strategist: 'assets/resumes/strategist-resume.jpg',
         anchor:     'assets/resumes/anchor-resume.jpg'
+    },
+
+    /* ═══════════════════════════════════════════════════════
+       SOCIAL LINKS — Change your links here ONCE
+       They will be used everywhere across the site:
+       hero buttons, footer, every profile's contact page.
+       ═══════════════════════════════════════════════════════ */
+    socialLinks: {
+        linkedin:  { url: '#', label: 'LinkedIn',  value: 'Avika Malik',   icon: 'fab fa-linkedin-in' },
+        youtube:   { url: '#', label: 'YouTube',   value: 'Avika Malik',   icon: 'fab fa-youtube' },
+        gmail:     { url: 'mailto:hello@avikamalik.com', label: 'Gmail', value: 'hello@avikamalik.com', icon: 'fas fa-envelope' },
+        instagram: { url: '#', label: 'Instagram', value: '@avikamalik',   icon: 'fab fa-instagram' },
+        whatsapp:  { url: '#', label: 'WhatsApp',  value: 'Message Me',    icon: 'fab fa-whatsapp' }
     }
 };
 
@@ -177,13 +190,8 @@ const PROFILE_DETAILS = {
             title: 'Contact Me', subtitle: 'Let\'s Connect',
             gradient: 'linear-gradient(135deg, #E50914 0%, #3d0207 100%)',
             sections: [
-                { heading: '', type: 'text', content: 'Have a brand that needs a voice? Let’s build your social presence.' },
-                { heading: 'Get in Touch', type: 'contact', items: [
-                    { icon: 'fas fa-envelope', label: 'Gmail', value: 'hello@avikamalik.com', link: 'mailto:hello@avikamalik.com' },
-                    { icon: 'fab fa-linkedin-in', label: 'LinkedIn', value: 'Avika Malik', link: '#' },
-                    { icon: 'fab fa-youtube', label: 'YouTube', value: 'Avika Malik', link: '#' },
-                    { icon: 'fab fa-instagram', label: 'Instagram', value: '@avikamalik', link: '#' }
-                ]}
+                { heading: '', type: 'text', content: 'Have a brand that needs a voice? Let\u2019s build your social presence.' },
+                { heading: 'Get in Touch', type: 'contact', items: 'auto' }
             ]
         }
     },
@@ -222,13 +230,8 @@ const PROFILE_DETAILS = {
             title: 'Contact Me', subtitle: 'Let\'s Connect',
             gradient: 'linear-gradient(135deg, #E50914 0%, #3d0207 100%)',
             sections: [
-                { heading: '', type: 'text', content: 'Got raw footage or a visual concept? Let’s make it cinematic.' },
-                { heading: 'Get in Touch', type: 'contact', items: [
-                    { icon: 'fas fa-envelope', label: 'Gmail', value: 'hello@avikamalik.com', link: 'mailto:hello@avikamalik.com' },
-                    { icon: 'fab fa-linkedin-in', label: 'LinkedIn', value: 'Avika Malik', link: '#' },
-                    { icon: 'fab fa-youtube', label: 'YouTube', value: 'Avika Malik', link: '#' },
-                    { icon: 'fab fa-instagram', label: 'Instagram', value: '@avikamalik', link: '#' }
-                ]}
+                { heading: '', type: 'text', content: 'Got raw footage or a visual concept? Let\u2019s make it cinematic.' },
+                { heading: 'Get in Touch', type: 'contact', items: 'auto' }
             ]
         }
     },
@@ -267,12 +270,8 @@ const PROFILE_DETAILS = {
             title: 'Contact Me', subtitle: 'Let\'s Connect',
             gradient: 'linear-gradient(135deg, #E50914 0%, #3d0207 100%)',
             sections: [
-                { heading: '', type: 'text', content: 'Need premium, editorial-style visuals? Let’s design them.' },
-                { heading: 'Get in Touch', type: 'contact', items: [
-                    { icon: 'fas fa-envelope', label: 'Gmail', value: 'hello@avikamalik.com', link: 'mailto:hello@avikamalik.com' },
-                    { icon: 'fab fa-linkedin-in', label: 'LinkedIn', value: 'Avika Malik', link: '#' },
-                    { icon: 'fab fa-youtube', label: 'YouTube', value: 'Avika Malik', link: '#' }
-                ]}
+                { heading: '', type: 'text', content: 'Need premium, editorial-style visuals? Let\u2019s design them.' },
+                { heading: 'Get in Touch', type: 'contact', items: 'auto' }
             ]
         }
     },
@@ -311,12 +310,8 @@ const PROFILE_DETAILS = {
             title: 'Contact Me', subtitle: 'Let\'s Connect',
             gradient: 'linear-gradient(135deg, #E50914 0%, #3d0207 100%)',
             sections: [
-                { heading: '', type: 'text', content: 'Have an idea but no roadmap? Let’s build the strategy.' },
-                { heading: 'Get in Touch', type: 'contact', items: [
-                    { icon: 'fas fa-envelope', label: 'Gmail', value: 'hello@avikamalik.com', link: 'mailto:hello@avikamalik.com' },
-                    { icon: 'fab fa-linkedin-in', label: 'LinkedIn', value: 'Avika Malik', link: '#' },
-                    { icon: 'fab fa-youtube', label: 'YouTube', value: 'Avika Malik', link: '#' }
-                ]}
+                { heading: '', type: 'text', content: 'Have an idea but no roadmap? Let\u2019s build the strategy.' },
+                { heading: 'Get in Touch', type: 'contact', items: 'auto' }
             ]
         }
     },
@@ -355,13 +350,8 @@ const PROFILE_DETAILS = {
             title: 'Contact Me', subtitle: 'Let\'s Connect',
             gradient: 'linear-gradient(135deg, #E50914 0%, #3d0207 100%)',
             sections: [
-                { heading: '', type: 'text', content: 'Need a voice that holds the room or a manager who handles the chaos? Let’s talk.' },
-                { heading: 'Get in Touch', type: 'contact', items: [
-                    { icon: 'fas fa-envelope', label: 'Gmail', value: 'hello@avikamalik.com', link: 'mailto:hello@avikamalik.com' },
-                    { icon: 'fab fa-linkedin-in', label: 'LinkedIn', value: 'Avika Malik', link: '#' },
-                    { icon: 'fab fa-youtube', label: 'YouTube', value: 'Avika Malik', link: '#' },
-                    { icon: 'fab fa-instagram', label: 'Instagram', value: '@avikamalik', link: '#' }
-                ]}
+                { heading: '', type: 'text', content: 'Need a voice that holds the room or a manager who handles the chaos? Let\u2019s talk.' },
+                { heading: 'Get in Touch', type: 'contact', items: 'auto' }
             ]
         }
     }
@@ -607,13 +597,7 @@ const DETAILS = {
         gradient: 'linear-gradient(135deg, #E50914 0%, #3d0207 100%)',
         sections: [
             { heading: '', type: 'text', content: 'Whether you need a social media strategy, creative direction, content execution, or end-to-end brand management — let\'s make it happen.' },
-            { heading: 'Get in Touch', type: 'contact', items: [
-                { icon: 'fas fa-envelope', label: 'Gmail', value: 'hello@avikamalik.com', link: 'mailto:hello@avikamalik.com' },
-                { icon: 'fab fa-linkedin-in', label: 'LinkedIn', value: 'Avika Malik', link: '#' },
-                { icon: 'fab fa-youtube', label: 'YouTube', value: 'Avika Malik', link: '#' },
-                { icon: 'fab fa-instagram', label: 'Instagram', value: '@avikamalik', link: '#' },
-                { icon: 'fab fa-whatsapp', label: 'WhatsApp', value: 'Message Me', link: '#' }
-            ]},
+            { heading: 'Get in Touch', type: 'contact', items: 'auto' },
             { heading: 'Send a Message', type: 'form' }
         ]
     },
@@ -628,8 +612,7 @@ const DETAILS = {
                 { title: 'Abhivyakti', desc: 'Creative direction and cultural event marketing.', tags: ['Creative'] },
                 { title: 'Social Media Projects', desc: 'Strategy, content planning, growth.', tags: ['Social Media'] },
                 { title: 'Brand Concepts', desc: 'Brand positioning, visual direction.', tags: ['Branding'] }
-            ]},
-            { heading: '', type: 'text', content: 'More case studies with analytics and results will be added as project data is shared.' }
+            ]}
         ]
     },
     'services-nav': {
@@ -697,59 +680,58 @@ function switchScreen(from, to) {
    INTRO — Zoom + Fade to Black
    ══════════════════════════════════════ */
 function initIntro() {
-    const startBtn = document.getElementById('start-btn');
     const startOverlay = document.getElementById('start-overlay');
     const introVideo = document.getElementById('intro-video');
 
-    // Wait for user to click Enter
-    startBtn.addEventListener('click', () => {
-        // Hide start overlay
+    // Hide start overlay immediately (no click needed)
+    if (startOverlay) {
         startOverlay.classList.add('hidden');
+    }
+
+    // Auto-play: trigger intro immediately on page load
+    screenIntro.classList.add('playing');
+
+    // Play intro video (muted autoplay works in all browsers)
+    if (introVideo) {
+        introVideo.muted = true;
+        introVideo.play().catch(() => {
+            console.log("Intro video could not auto-play.");
+        });
+    }
+
+    // Play intro audio
+    if (introAudio) {
+        introAudio.volume = 0.6;
+        introAudio.currentTime = 0;
+        introAudio.play().catch(() => {
+            console.log("Audio auto-play blocked by browser. This is normal — browsers require user interaction for audio.");
+        });
+    }
+
+    // After zoom animation (CONFIG.introDuration), fade to black
+    setTimeout(() => {
+        introOverlay.classList.add('fade-black');
+        introName.style.opacity = '0';
+        introName.style.transition = 'opacity 0.8s ease';
+    }, CONFIG.introDuration);
+
+    // Switch screen and fade out audio
+    setTimeout(() => {
+        switchScreen(screenIntro, screenProfiles);
         
-        // Add playing class to trigger CSS animations
-        screenIntro.classList.add('playing');
-
-        // Play intro video
-        if (introVideo) {
-            introVideo.play().catch(() => {
-                console.log("Intro video could not play.");
-            });
+        if (introAudio && !introAudio.paused) {
+            let vol = introAudio.volume;
+            const fadeAudio = setInterval(() => {
+                vol -= 0.05;
+                if (vol <= 0) {
+                    introAudio.pause();
+                    clearInterval(fadeAudio);
+                } else {
+                    introAudio.volume = vol;
+                }
+            }, 50);
         }
-
-        // Play intro audio
-        if (introAudio) {
-            introAudio.volume = 0.6;
-            introAudio.currentTime = 0;
-            introAudio.play().catch(() => {
-                console.log("Audio play failed even after interaction.");
-            });
-        }
-
-        // After zoom animation (CONFIG.introDuration), fade to black
-        setTimeout(() => {
-            introOverlay.classList.add('fade-black');
-            introName.style.opacity = '0';
-            introName.style.transition = 'opacity 0.8s ease';
-        }, CONFIG.introDuration);
-
-        // Switch screen and fade out audio
-        setTimeout(() => {
-            switchScreen(screenIntro, screenProfiles);
-            
-            if (introAudio && !introAudio.paused) {
-                let vol = introAudio.volume;
-                const fadeAudio = setInterval(() => {
-                    vol -= 0.05;
-                    if (vol <= 0) {
-                        introAudio.pause();
-                        clearInterval(fadeAudio);
-                    } else {
-                        introAudio.volume = vol;
-                    }
-                }, 50);
-            }
-        }, CONFIG.introDuration + 1000);
-    });
+    }, CONFIG.introDuration + 1000);
 }
 
 
@@ -1119,8 +1101,12 @@ function renderDetailSections(sections, sectionId) {
                 break;
 
             case 'contact':
+                // If items is 'auto', build from CONFIG.socialLinks
+                const contactItems = section.items === 'auto'
+                    ? Object.values(CONFIG.socialLinks).map(s => ({ icon: s.icon, label: s.label, value: s.value, link: s.url }))
+                    : section.items;
                 html += '<div class="contact-grid">' +
-                    section.items.map(i => `
+                    contactItems.map(i => `
                         <a href="${i.link}"
                            class="contact-card"
                            target="_blank"
@@ -1600,6 +1586,25 @@ function initResumeModal() {
 
 
 /* ══════════════════════════════════════
+   SOCIAL LINKS
+   ══════════════════════════════════════ */
+function initSocialLinks() {
+    // Footer links
+    const footerInstagram = document.getElementById('footer-instagram');
+    const footerLinkedin = document.getElementById('footer-linkedin');
+    const footerEmail = document.getElementById('footer-email');
+
+    if (footerInstagram) footerInstagram.href = CONFIG.socialLinks.instagram.url;
+    if (footerLinkedin) footerLinkedin.href = CONFIG.socialLinks.linkedin.url;
+    if (footerEmail) footerEmail.href = CONFIG.socialLinks.gmail.url;
+
+    // Hero links
+    const heroLinkedin = document.getElementById('btn-linkedin');
+    if (heroLinkedin) heroLinkedin.href = CONFIG.socialLinks.linkedin.url;
+}
+
+
+/* ══════════════════════════════════════
    INITIALIZE
    ══════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', () => {
@@ -1609,4 +1614,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavbar();
     initDetail();
     initResumeModal();
+    initSocialLinks();
 });

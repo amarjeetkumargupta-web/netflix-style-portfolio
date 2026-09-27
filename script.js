@@ -164,7 +164,7 @@ const PROFILE_DETAILS = {
         'skills-tools': {
             title: 'Skills', subtitle: 'Tools & Platforms',
             gradient: 'linear-gradient(135deg, #00CEC9 0%, #003634 100%)',
-            sections: [{ heading: 'Core Skills', type: 'tags', items: ['Content Calendars', 'Community Management', 'Social Media Audits', 'Cross-Platform Adaptation', 'Meta Business Suite', 'Audience Growth'] }]
+            sections: [{ heading: 'Core Skills', type: 'tags', items: ['Social media strategy', 'Content strategy', 'Brand positioning', 'Social media audits', 'Content funnel development', 'Brand identity development', 'Creative copywriting', 'Social captions', 'Content calendars', 'KPI development', 'Audience analytics', 'Conversion tracking', 'Influencer outreach', 'UGC campaigns', 'Crisis communication', 'Trend forecasting', 'Customer journey mapping'] }]
         },
         'experience': {
             title: 'Experience', subtitle: 'Social Media Management',
@@ -204,7 +204,7 @@ const PROFILE_DETAILS = {
         'skills-tools': {
             title: 'Skills', subtitle: 'Tools & Platforms',
             gradient: 'linear-gradient(135deg, #00CEC9 0%, #003634 100%)',
-            sections: [{ heading: 'Core Skills', type: 'tags', items: ['Adobe Premiere Pro', 'After Effects', 'CapCut', 'Lightroom', 'Pacing & Retention Strategy', 'Color Grading'] }]
+            sections: [{ heading: 'Core Skills', type: 'tags', items: ['Story structure', 'Multi-camera editing', 'Logo animation', 'Visual effects', 'Color grading', 'Audio editing', 'Visual storytelling', 'Visual composition', 'Adobe Premiere Pro', 'After Effects'] }]
         },
         'experience': {
             title: 'Experience', subtitle: 'Video & Post-Production',
@@ -244,7 +244,7 @@ const PROFILE_DETAILS = {
         'skills-tools': {
             title: 'Skills', subtitle: 'Tools & Platforms',
             gradient: 'linear-gradient(135deg, #00CEC9 0%, #003634 100%)',
-            sections: [{ heading: 'Core Skills', type: 'tags', items: ['Adobe Photoshop', 'Canva', 'Visual Direction', 'Layout Design', 'Typography', 'Brand Moodboarding'] }]
+            sections: [{ heading: 'Core Skills', type: 'tags', items: ['Logo design', 'Brand guidelines', 'Conceptual design', 'Typography', 'Social media design', 'Digital campaigns', 'Digital advertising', 'Digital banners', 'Thumbnail design', 'Packaging design'] }]
         },
         'experience': {
             title: 'Experience', subtitle: 'Visuals & Static Content',
